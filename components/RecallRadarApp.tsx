@@ -56,7 +56,10 @@ export default function RecallRadarApp() {
     setFinishedStats(null);
     setAiText(null);
     setScreen("quiz");
-    fetch("/api/quiz/start", { method: "POST" }).catch(() => {});
+    // keepalive: this must survive the user navigating away (e.g. typing /admin
+    // into the URL bar) moments after clicking Start — a plain fetch gets
+    // cancelled on page unload and would silently drop the increment.
+    fetch("/api/quiz/start", { method: "POST", keepalive: true }).catch(() => {});
   }, []);
 
   const finishQuiz = useCallback((finalAnswers: QuizSession["answers"]) => {
@@ -69,6 +72,7 @@ export default function RecallRadarApp() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ concepts: stats }),
+      keepalive: true,
     }).catch(() => {});
 
     setAiLoading(true);
@@ -126,7 +130,7 @@ export default function RecallRadarApp() {
 
   const markShared = useCallback(() => {
     setSession((prev) => ({ ...prev, hasShared: true }));
-    fetch("/api/quiz/share", { method: "POST" }).catch(() => {});
+    fetch("/api/quiz/share", { method: "POST", keepalive: true }).catch(() => {});
   }, []);
 
   const currentQuestion = screen === "quiz" ? QUESTIONS[session.order[session.index]] : null;

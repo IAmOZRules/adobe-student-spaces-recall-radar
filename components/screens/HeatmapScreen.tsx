@@ -29,7 +29,7 @@ export default function HeatmapScreen({ onHome }: { onHome: () => void }) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch("/api/heatmap/view", { method: "POST" }).catch(() => {});
+    fetch("/api/heatmap/view", { method: "POST", keepalive: true }).catch(() => {});
 
     let cancelled = false;
     fetch("/api/heatmap")

@@ -150,9 +150,14 @@ export default function AdminPage() {
           <div className="eyebrow" style={{ marginBottom: 0 }}>
             Admin
           </div>
-          <button className="nav-link" onClick={handleLogout}>
-            Log out
-          </button>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button className="nav-link" onClick={loadDashboard}>
+              Refresh
+            </button>
+            <button className="nav-link" onClick={handleLogout}>
+              Log out
+            </button>
+          </div>
         </div>
 
         {loadError && <div className="form-error">{loadError}</div>}

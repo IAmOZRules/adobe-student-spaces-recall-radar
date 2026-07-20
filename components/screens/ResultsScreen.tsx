@@ -176,7 +176,7 @@ export default function ResultsScreen({
                 <input
                   type="email"
                   className="interview-email-input"
-                  placeholder="you@school.edu"
+                  placeholder="you@institute.edu"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -188,6 +188,13 @@ export default function ResultsScreen({
                   {interviewSubmitting ? "Sending…" : "I'm open to an interview"}
                 </button>
               </form>
+            )}
+            {!interviewSubmitted && (
+              <div style={{ fontSize: "12px", color: "var(--ink-soft)", marginTop: "8px", lineHeight: 1.5 }}>
+                Use your institute email if you can — personal is fine too. We may reach out in the next couple of
+                days for a short 5-minute interview. All information stays private and will be disposed of by the
+                end of August.
+              </div>
             )}
             {interviewError && <div className="form-error">{interviewError}</div>}
           </div>
