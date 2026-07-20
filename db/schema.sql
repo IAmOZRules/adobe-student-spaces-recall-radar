@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS concept_stats (
+  concept_id TEXT PRIMARY KEY,
+  correct INT NOT NULL DEFAULT 0,
+  total INT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS funnel (
+  id INT PRIMARY KEY DEFAULT 1,
+  started INT NOT NULL DEFAULT 0,
+  completed INT NOT NULL DEFAULT 0,
+  heatmap_views INT NOT NULL DEFAULT 0,
+  shared INT NOT NULL DEFAULT 0,
+  interview_signups INT NOT NULL DEFAULT 0
+);
+INSERT INTO funnel (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
+
+CREATE TABLE IF NOT EXISTS interview_signups (
+  id SERIAL PRIMARY KEY,
+  email TEXT NOT NULL,
+  completed_quiz BOOLEAN NOT NULL DEFAULT TRUE,
+  shared_link BOOLEAN NOT NULL DEFAULT FALSE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
