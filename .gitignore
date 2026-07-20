@@ -3,3 +3,6 @@ node_modules
 .env
 .env.local
 *.log
+
+# contains real student emails from interview_signups — never commit
+exports/

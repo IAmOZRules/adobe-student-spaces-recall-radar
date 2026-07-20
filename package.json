@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:migrate": "node scripts/migrate.mjs",
-    "test:seed": "node scripts/seed-test-data.mjs",
+    "db:export": "node scripts/export-data.mjs",
     "test:concurrency": "node scripts/test-concurrency.mjs"
   },
   "dependencies": {
